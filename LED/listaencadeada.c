@@ -27,7 +27,7 @@ int main(){
         switch (choice) {
             case 1: 
                 scanf("%d", &value); 
-                addnode(value, ini); 
+                addnode(value, &ini); 
                 break;
             case 2: 
                 removenode(); 
@@ -48,7 +48,6 @@ void addnode(int value, struct node** ini) {
     // Aloca memória para um novo nó
     
     newnode->value = value;
-    newnode->next = NULL;
     // Define o valor e o próximo nó como nulo
     
     if (*ini == NULL) {
