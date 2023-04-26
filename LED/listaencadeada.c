@@ -46,7 +46,7 @@ void addnode(int value, struct node** initial) {
     // Aloca memória para um novo nó
     
     newnode->value = value;
-    // Define o valor e o próximo nó como nulo
+    // Define o valor para o nó
     
     if (*initial == NULL) {
         newnode->next = newnode;
