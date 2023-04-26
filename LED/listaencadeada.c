@@ -20,7 +20,7 @@ int main(){
     
     // Laço do-while que executa até que o usuário decida encerrar o programa
     do {
-        printf("Gostaria de:\n1-Inserir um elemento na lista.\n2-Remover um elemento na lista.\n3-imprimir a lista.\n4- encerrar.");
+        printf("Gostaria de:\n1-Inserir um elemento na lista.\n2-Remover um elemento na lista.\n3- encerrar.");
         scanf("%d", &choice);
         // Lê a opção escolhida pelo usuário
 
@@ -32,14 +32,11 @@ int main(){
             case 2: 
                 removenode(&initial); 
                 break;
-            case 3: 
-                printlist(&initial); 
-                break;
         }
         // Executa a função correspondente à opção escolhida pelo usuário
 
-    } while (choice != 4);
-    // Encerra o programa se o usuário escolher a opção 4
+    } while (choice != 3);
+    // Encerra o programa se o usuário escolher a opção 3
 }
 
 // Função para adicionar um novo nó na lista
