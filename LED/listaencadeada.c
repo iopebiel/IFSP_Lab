@@ -19,12 +19,13 @@ int main(){
     
     // Laço do-while que executa até que o usuário decida encerrar o programa
     do {
-        printf("Gostaria de:\n1-Inserir um elemento na lista.\n2-Remover um elemento na lista.\n3- encerrar.");
+        printf("\nGostaria de:\n1-Inserir um elemento na lista.\n2-Remover um elemento na lista.\n3- encerrar.\n\n-> ");
         scanf("%d", &choice);
         // Lê a opção escolhida pelo usuário
 
         switch (choice) {
             case 1: 
+                printf("\nInforme o valor que deseja adicionar a lista:\n");
                 scanf("%d", &value); 
                 addnode(value, &initial); 
                 break;
@@ -65,7 +66,7 @@ void addnode(int value, struct node** initial) {
 // Função para remover o nó inicial da lista
 void removenode(struct node** initial) {
     if (*initial == NULL) {
-        printf("A lista está vazia.\n");
+        printf("\nA lista está vazia.\n");
         return;
     }
     // Verifica se a lista está vazia, se sim, retorna uma mensagem de erro
@@ -83,7 +84,7 @@ void removenode(struct node** initial) {
     // Se o nó inicial foi o único nó da lista, define o ponteiro inicial como nulo
     
     freenode(&removednode);
-    printf("\nNó removido");
+    printf("\nNó removido\n");
     // Desaloca a memória do nó removido
 }
 
