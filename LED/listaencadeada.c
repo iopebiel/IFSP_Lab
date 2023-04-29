@@ -38,11 +38,10 @@ int main(){
     } while (choice != 3);
     // Encerra o programa se o usuário escolher a opção 3
 }
-
 // Função para adicionar um novo nó na lista
 void addnode(int value, struct node** initial) {
     struct node* newnode = (struct node*) malloc(sizeof(struct node));
-    printf("Nó alocado");
+    printf("Nó alocado.");
     // Aloca memória para um novo nó
     
     newnode->value = value;
@@ -51,6 +50,7 @@ void addnode(int value, struct node** initial) {
     if (*initial == NULL) {
         newnode->next = newnode;
         *initial = newnode;
+        printf("\nprimeiro nó inicializado.\n");
         return;
     }
     // Verifica se a lista está vazia, se sim, define o próximo nó como ele mesmo
@@ -58,6 +58,7 @@ void addnode(int value, struct node** initial) {
     newnode->next = (*initial)->next;
     (*initial)->next = newnode;
     *initial = newnode;
+    printf("\nNovo nó adicionado ao fim da lista encadeada circular.\n");
     // Adiciona o novo nó ao fim da lista encadeada circular
 }
 
@@ -71,15 +72,19 @@ void removenode(struct node** initial) {
     // Verifica se a lista está vazia, se sim, retorna uma mensagem de erro
     
     struct node* removednode = (*initial)->next;
+    printf("\nMarcado o nó inicial para remoção.");
     (*initial)->next = removednode->next;
+    printf("\nProximo nó alterado.");
     // Remove o nó inicial e define o próximo nó como o próximo nó após o nó inicial
     
     if (*initial == removednode) {
         *initial = NULL;
+        printf("\nNó inicial removido e ponteiro inicial alterado para nulo.");
     }
     // Se o nó inicial foi o único nó da lista, define o ponteiro inicial como nulo
     
     freenode(&removednode);
+    printf("\nNó removido");
     // Desaloca a memória do nó removido
 }
 
@@ -87,4 +92,5 @@ void removenode(struct node** initial) {
 void freenode(struct node** node) {
     free(*node);
     *node = NULL;
+    printf("\nNó desalocado");
 }
