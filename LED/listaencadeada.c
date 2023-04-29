@@ -11,7 +11,6 @@ struct node{
 void addnode(int value, struct node** initial);
 void removenode(struct node** initial);
 void freenode(struct node** node);
-void printnode(struct node** initial);
 
 int main(){
     int choice, value;
