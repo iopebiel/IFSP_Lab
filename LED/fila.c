@@ -24,9 +24,9 @@ int ComparaFilas (Fila* f1, Fila* f2);
 
 int main () {
     Fila * f1;
+    char item1[MAX_SIZE], item2[MAX_SIZE];
     f1 = CriaFila();
     printf("\nQual item deseja adicionar a FILA 1?");
-    char item1[MAX_SIZE], item2[MAX_SIZE];
     scanf("%s", item1);
     FilaInsere(f1, item1);
     Fila * f2;
@@ -47,11 +47,6 @@ Fila * CriaFila(void)
     return f;
 }
 
-int FilaVazia(Fila * f)
-{
-    return (f->inicio == NULL);
-}
-
 void FilaInsere (Fila * f, char item[MAX_SIZE])
 {
     No * novo = (No *)malloc(sizeof(No));
@@ -69,6 +64,11 @@ void FilaInsere (Fila * f, char item[MAX_SIZE])
     f->fim = novo;   
     if (f->inicio == NULL)
         f->inicio = novo;
+}
+
+int FilaVazia(Fila * f)
+{
+    return (f->inicio == NULL);
 }
 
 int ComparaFilas (Fila* f1, Fila* f2)
