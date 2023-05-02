@@ -26,12 +26,14 @@ int main () {
     Fila * f1;
     f1 = CriaFila();
     printf("\nQual item deseja adicionar a FILA 1?");
-    char item[MAX_SIZE] = "Batata";
-    FilaInsere(f1, item);
+    char item1[MAX_SIZE], item2[MAX_SIZE];
+    scanf("%s", item1);
+    FilaInsere(f1, item1);
     Fila * f2;
     f2 = CriaFila();
     printf("\nQual item deseja adicionar a FILA 2?");
-    FilaInsere(f2, item);
+    scanf("%s", item2);
+    FilaInsere(f2, item2);
     if (ComparaFilas(f1, f2) == 0)
         printf("\nAs String são iguais");
     else
@@ -61,7 +63,10 @@ void FilaInsere (Fila * f, char item[MAX_SIZE])
     strcpy (n->info, item);
     n->prox = NULL;
     if (FilaVazia(f))
+    {   
+        f->ini = n;
         f->fim = n;
+    }
     else 
         f->ini = n;
     f->fim = n;   
