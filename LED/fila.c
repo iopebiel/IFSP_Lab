@@ -24,16 +24,16 @@ int ComparaFilas (Fila* f1, Fila* f2);
 
 int main () {
     Fila * f1;
-    f1 = fila_cria();
+    f1 = CriaFila();
     printf("Qual item deseja adicionar a FILA 1?");
     char item[MAX_SIZE];
     scanf("%s", item);
-    fila_insere(f1, item);
+    FilaInsere(f1, item);
     Fila * f2;
-    f2 = fila_cria();
+    f2 = CriaFila();
     printf("Qual item deseja adicionar a FILA 2?");
     scanf("%s", item);
-    fila_insere(f2, item);
+    FilaInsere(f2, item);
     if (ComparaFilas(f1, f2) == 0)
         printf("As String são iguais");
     else
@@ -71,5 +71,5 @@ void FilaInsere (Fila * f, char item[MAX_SIZE])
 
 int ComparaFilas (Fila* f1, Fila* f2)
 {
-    return strcmp(*f1->item, *f2->item);
+    return strcmp(f1->ini, f2->ini);
 }
