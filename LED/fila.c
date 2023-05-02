@@ -4,16 +4,16 @@
 
 #define MAX_SIZE 15
 
-struct elemFila {
+struct no {
     char info[MAX_SIZE];    
-    struct elemFila * prox;
+    struct no *prox;
 };
 
-typedef struct elemFila ElemFila;
+typedef struct no No;
 
 struct fila {
-    ElemFila * ini;
-    ElemFila * fim;
+    No * inicio;
+    No * fim;
 };
 typedef struct fila Fila;
 
@@ -43,33 +43,32 @@ int main () {
 Fila * CriaFila(void)
 {
     Fila * f = (Fila *)malloc(sizeof(Fila));
-    f->ini = f->fim = NULL;
+    f->inicio = f->fim = NULL;
     return f;
 }
 
 int FilaVazia(Fila * f)
 {
-    return (f->ini == NULL);
+    return (f->inicio == NULL);
 }
 
 void FilaInsere (Fila * f, char item[MAX_SIZE])
 {
-    ElemFila * n = (ElemFila *)malloc(sizeof(ElemFila));
-    if (n == NULL) 
+    No * novo = (No *)malloc(sizeof(No));
+    if (novo == NULL) 
     {
-        printf("Sem memoria\n"); 
+        printf("Sem memoria\novo"); 
         exit(1);
     }
-    strcpy (n->info, item);
-    n->prox = NULL;
-    if (FilaVazia(f))
+    strcpy (novo->info, item);
+    novo->prox = NULL;
+    if (!FilaVazia(f))
     {   
-        f->ini = n;
-        f->fim = n;
+        f->fim->prox = novo;
     }
-    else 
-        f->ini = n;
-    f->fim = n;   
+    f->fim = novo;   
+    if (f->inicio == NULL)
+        f->inicio = novo;
 }
 
 int ComparaFilas (Fila* f1, Fila* f2)
