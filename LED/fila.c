@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_SIZE 100
+#define MAX_SIZE 15
 
 struct elemFila {
     char info[MAX_SIZE];    
@@ -25,19 +25,17 @@ int ComparaFilas (Fila* f1, Fila* f2);
 int main () {
     Fila * f1;
     f1 = CriaFila();
-    printf("Qual item deseja adicionar a FILA 1?");
-    char item[MAX_SIZE];
-    scanf("%s", item);
+    printf("\nQual item deseja adicionar a FILA 1?");
+    char item[MAX_SIZE] = "Batata";
     FilaInsere(f1, item);
     Fila * f2;
     f2 = CriaFila();
-    printf("Qual item deseja adicionar a FILA 2?");
-    scanf("%s", item);
+    printf("\nQual item deseja adicionar a FILA 2?");
     FilaInsere(f2, item);
     if (ComparaFilas(f1, f2) == 0)
-        printf("As String são iguais");
+        printf("\nAs String são iguais");
     else
-        printf("As strings são diferentes");
+        printf("\nAs strings são diferentes");
 }
 
 Fila * CriaFila(void)
@@ -60,10 +58,10 @@ void FilaInsere (Fila * f, char item[MAX_SIZE])
         printf("Sem memoria\n"); 
         exit(1);
     }
-    strcpy (item, n->info);
+    strcpy (n->info, item);
     n->prox = NULL;
     if (FilaVazia(f))
-        f->fim->prox = n;
+        f->fim = n;
     else 
         f->ini = n;
     f->fim = n;   
@@ -71,5 +69,5 @@ void FilaInsere (Fila * f, char item[MAX_SIZE])
 
 int ComparaFilas (Fila* f1, Fila* f2)
 {
-    return strcmp(f1->ini, f2->ini);
+    return strcmp((f1->fim)->info, (f2->fim)->info);
 }
