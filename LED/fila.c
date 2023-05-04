@@ -12,15 +12,15 @@ struct no {
 typedef struct no No;
 
 struct fila {
-    No * inicio;
-    No * fim;
+    No *inicio;
+    No *fim;
 };
 typedef struct fila Fila;
 
-Fila * CriaFila(void);
-int FilaVazia(Fila * f);
-void FilaInsere (Fila * f, char item[MAX_SIZE]);
-int ComparaFilas (Fila* f1, Fila* f2);
+Fila *CriaFila(void);
+int FilaVazia(Fila *f);
+void FilaInsere (Fila *f, char item[MAX_SIZE]);
+int ComparaFilas (Fila *f1, Fila *f2);
 
 int main () {
     Fila *f1;
@@ -42,7 +42,7 @@ int main () {
         printf("\n\nAs strings sao diferentes");
 }
 
-Fila * CriaFila(void)
+Fila *CriaFila(void)
 {
     printf("\n");
     Fila *f = (Fila *)malloc(sizeof(Fila));
@@ -83,7 +83,7 @@ int FilaVazia(Fila *f)
     return (f->inicio == NULL);
 }
 
-int ComparaFilas (Fila* f1, Fila* f2)
+int ComparaFilas (Fila *f1, Fila *f2)
 {
     return strcmp((f1->fim)->info, (f2->fim)->info);
 }
