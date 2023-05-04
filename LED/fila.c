@@ -5,7 +5,7 @@
 #define MAX_SIZE 15
 
 struct no {
-    char info[MAX_SIZE];    
+    char info[MAX_SIZE];
     struct no *prox;
 };
 
@@ -25,25 +25,26 @@ int ComparaFilas (Fila* f1, Fila* f2);
 int main () {
     Fila *f1;
     char item1[MAX_SIZE], item2[MAX_SIZE];
-    printf("\nIniciando a criação da FILA 1...");
+    printf("\nIniciando a criacao da FILA 1...");
     f1 = CriaFila();
     printf("\nQual item deseja adicionar a FILA 1?\n");
     scanf("%s", item1);
     FilaInsere(f1, item1);
     Fila *f2;
-    printf("\nIniciando a criação da FILA 2...");
+    printf("\n\nIniciando a criacao da FILA 2...");
     f2 = CriaFila();
     printf("\nQual item deseja adicionar a FILA 2?\n");
     scanf("%s", item2);
     FilaInsere(f2, item2);
     if (ComparaFilas(f1, f2) == 0)
-        printf("\nAs String são iguais");
+        printf("\n\nAs String sao iguais");
     else
-        printf("\nAs strings são diferentes");
+        printf("\n\nAs strings sao diferentes");
 }
 
 Fila * CriaFila(void)
 {
+    printf("\n");
     Fila *f = (Fila *)malloc(sizeof(Fila));
     printf("\nFila alocada. ");
     f->inicio = f->fim = NULL;
@@ -54,26 +55,26 @@ Fila * CriaFila(void)
 void FilaInsere (Fila *f, char item[MAX_SIZE])
 {
     No *novo = (No *)malloc(sizeof(No));
-    printf("\nNó alocado para inserção de elemento na fila.");
-    if (novo == NULL) 
+    printf("\nNo alocado para insercao de elemento na fila.");
+    if (novo == NULL)
     {
-        printf("Sem memoria\n"); 
+        printf("Sem memoria\n");
         exit(1);
     }
     strcpy (novo->info, item);
-    printf("\nCopia do valor para o nó.");
+    printf("\nCopia do valor para o no.");
     novo->prox = NULL;
     if (!FilaVazia(f))
-    {   
+    {
         f->fim->prox = novo;
-        printf("Alteração do último nó para inserção de próximo.");
+        printf("Alteracao do ultimo no para insercao de próximo.");
     }
-    f->fim = novo; 
-    printf("\nDefinição do novo nó como o último da fila.");  
+    f->fim = novo;
+    printf("\nDefinicao do novo no como o ultimo da fila.");
     if (f->inicio == NULL)
-    {    
+    {
         f->inicio = novo;
-        printf("\nDefinição do nó como nó inicial."); 
+        printf("\nDefinicao do no como no inicial.");
     }
 }
 
