@@ -47,7 +47,7 @@ Fila * CriaFila(void)
     Fila *f = (Fila *)malloc(sizeof(Fila));
     printf("\nFila alocada. ");
     f->inicio = f->fim = NULL;
-    printf("E inicializada.")
+    printf("E inicializada.");
     return f;
 }
 
