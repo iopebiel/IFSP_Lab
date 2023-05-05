@@ -17,7 +17,7 @@ struct fila {
 };
 typedef struct fila Fila;
 
-Fila *CriaFila(void);
+Fila *CriaFila();
 int FilaVazia(Fila *f);
 void FilaInsere (Fila *f, char item[MAX_SIZE]);
 int ComparaFilas (Fila *f1, Fila *f2);
