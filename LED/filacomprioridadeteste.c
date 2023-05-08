@@ -2,13 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct {
+typedef struct no{
     char nome[20];
     int prioridade;
-} Item;
-
-typedef struct no{
-    Item *vetor;
     struct no *prox;
 } No;
 
@@ -36,7 +32,7 @@ int main() {
     prioridade = 5;
     strcpy(novo_item.nome, "jose");
     novo_item.prioridade = prioridade;
-    insere(fila, no, novo_item);
+    insere(fila, novo_item);
 
     strcpy(novo_item.nome, "maria");
     prioridade = 2;
@@ -60,29 +56,45 @@ void troca(Item *a, Item *b) {
 }
 
 pFilaPrioridade criar_fila_prioridade() {
-    FilaPrioridade *f = (Fila *)malloc(sizeof(Fila));
-    
-    f->inicio = f->fim = ;
+    FilaPrioridade f = (pFilaPrioridade)malloc(sizeof(FilaPrioridade));
+    f->inicio = f->fim = NULL;
     return f;
 }
 
-void insere(pFilaPrioridade fila, Item item) {
-    
-    [fila->n] = item;
-    fila->;
+void insere(pFilaPrioridade f, Item item) 
+{   
+    No *novo = (No *)malloc(sizeof(No));
+    printf("\nNo alocado para insercao de elemento na fila.");
+    if (novo == NULL)
+    {
+        printf("Sem memoria\n");
+        exit(1);
+    }
+    strcpy (novo->nome, item->nome);
+    novo->prioridade = item->prioridade;
+    printf("\nCopia do valor para o no.");
+    novo->prox = NULL;
+    if (!FilaVazia(f))
+    {
+        f->fim->prox = novo;
+        printf("Alteracao do ultimo no para insercao de próximo.");
+    }
+    f->fim = novo;
+    printf("\nDefinicao do novo no como o ultimo da fila.");
+    if (f->inicio == NULL)
+    {
+        f->inicio = novo;
+        printf("\nDefinicao do no como no inicial.");
+    }
+}
+
+int FilaVazia(pFilaPrioridade f)
+{
+    return (f->inicio == NULL);
 }
 
 Item extrai_maximo(pFilaPrioridade fila) {
-    int j, max = 0;
-    for (j = 1; j < fila->n; j++) {
-        if (fila->vetor[max].prioridade < fila->vetor[j].prioridade) {
-            max = j;
-        }
-    }
-    troca(&(fila->vetor[max]), &(fila->vetor[fila->n - 1]));
-    fila->;
-
-    return fila->vetor[fila];
+    
 }
 
 void imprime(pFilaPrioridade fila) {
