@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -17,7 +16,6 @@ typedef struct {
 } FilaPrioridade;
 
 typedef FilaPrioridade *pFilaPrioridade;
-
 
 pFilaPrioridade criar_fila_prioridade() {
     pFilaPrioridade f = (pFilaPrioridade)malloc(sizeof(FilaPrioridade));
@@ -43,18 +41,19 @@ void insere(pFilaPrioridade f, No item)
     novo->prioridade = item.prioridade;
     printf("\nCopia do valor para o no.");
     novo->proximo = NULL;
-    if (!FilaVazia(f))
+    if (FilaVazia(f))
+    {
+        f->inicio = novo;
+        printf("\nDefinicao do no como no inicial.");
+    }
+    else
     {
         f->fim->proximo = novo;
         printf("\nAlteracao do ultimo no para insercao de proximo.");
     }
     f->fim = novo;
+    novo->proximo = f->inicio;
     printf("\nDefinicao do novo no como o ultimo da fila.\n");
-    if (f->inicio == NULL)
-    {
-        f->inicio = novo;
-        printf("\nDefinicao do no como no inicial.");
-    }
 }
 
 pNo extrai_maximo(pFilaPrioridade fila) {
@@ -76,46 +75,6 @@ pNo extrai_maximo(pFilaPrioridade fila) {
     return noprioridademax;
 }
 
-void liberarno(pNo *no) {
-    free(*no);
-    *no = NULL;
-    printf("\nNó desalocado");
-}
-
-No **noantes(pFilaPrioridade f, pNo noexcluido){
-    No **anterior;
-    pNo atual = f->inicio;
-    while (atual != f->fim)
-    {
-        if (atual->proximo ==noexcluido)
-            {
-                anterior = atual;
-                break;
-            }
-        if(atual != f->fim)
-            atual = atual->proximo;
-    }
-    return anterior;
-}
-
-void removerno(No **noexclusao, pFilaPrioridade f) {
-    No **noanterior;
-    pNo noremovido = (*noexclusao)->proximo;
-    if (f->inicio == NULL) {
-        printf("\nA lista está vazia.\n");
-        return;
-    }
-
-    (*noexclusao)->proximo = noremovido->proximo;
-    printf("\nProximo nó alterado.");
-
-    No **noanterior = noantes(f, &noexclusao);
-    // Remover o nó inicial e define o próximo nó como o próximo nó após o nó inicial
-    liberarno(&noremovido);
-    printf("\nNó removido\n");
-    // Desaloca a memória do nó removido
-}
-
 void imprime(pFilaPrioridade fila) {
     pNo aux = fila->inicio;
     int i = 1;
@@ -132,11 +91,33 @@ void imprime(pFilaPrioridade fila) {
     }
 }
 
+pNo anterior(pNo excluido, pFilaPrioridade f)
+{
+    pNo atual = f->inicio;
+    while (atual->proximo != excluido)
+    {
+        atual = atual->proximo;
+    }
+    return atual;
+}
+
+void removerno(No **noexcluido,No **noanterior, pFilaPrioridade f)
+{
+    (*noanterior)->proximo = (*noexcluido)->proximo;
+    if ((*noexcluido) == f->inicio)
+        f->inicio = (*noexcluido)->proximo;
+    if ((*noexcluido) == f->fim)
+        f->fim = (*noanterior);
+    (*noexcluido)->proximo = NULL;
+    free(*noexcluido);
+}
+
 int main() {
     int prioridade;
     pFilaPrioridade fila;
     No novo_item;
-    pNo item_excluido;
+    pNo noexcluido;
+    pNo noanterior;
 
     fila = criar_fila_prioridade();
 
@@ -157,9 +138,11 @@ int main() {
 
     imprime(fila);
 
-    item_excluido = extrai_maximo(fila);
-    printf("\nElemento Maximo\nNome: %s\nPrioridade: %d\n", item_excluido->nome, item_excluido->prioridade);
-    removerno(&item_excluido, fila);
+    noexcluido = extrai_maximo(fila);
+
+    printf("\nElemento Maximo\nNome: %s\nPrioridade: %d\n", noexcluido->nome, noexcluido->prioridade);
+    noanterior = anterior(noexcluido, fila);
+    removerno(&noexcluido, &noanterior, fila);
     printf("\n\n-----apos exclusao-----\n\n");
 
     imprime(fila);
