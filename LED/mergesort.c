@@ -97,6 +97,7 @@ int main() {
 
     printf("\nTempo medido: %.3f segundos.\n", tPassado);
     printf("\nArray apos a ordenacao: \n");
+    
     imprimirArray(vetor);
 
     return 0;

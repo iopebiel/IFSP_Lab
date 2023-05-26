@@ -4,9 +4,6 @@
 void ordenacaoPorInsercao(int vetor[]) {
     int i, chave, j;
 
-    struct timeval begin, end;
-    gettimeofday(&begin, 0);
-
     while(i < 50)
     {
         for (i = 1; i < 50; i++) {
@@ -23,14 +20,6 @@ void ordenacaoPorInsercao(int vetor[]) {
         }
 
     }
-
-
-    gettimeofday(&end, 0);
-    long segundos = end.tv_sec - begin.tv_sec;
-    long microsegundos = end.tv_usec - begin.tv_usec;
-    double tPassado = segundos + microsegundos*1e-6;
-
-    printf("\nTempo medido: %.3f segundos.\n", tPassado);
 
 }
 
@@ -67,8 +56,18 @@ int main() {
     fclose(arquivo);
     printf("Array antes da ordenacao: \n");
     imprimirArray(vetor);
+    
+    struct timeval begin, end;
+    gettimeofday(&begin, 0);
 
     ordenacaoPorInsercao(vetor);
+
+    gettimeofday(&end, 0);
+    long segundos = end.tv_sec - begin.tv_sec;
+    long microsegundos = end.tv_usec - begin.tv_usec;
+    double tPassado = segundos + microsegundos*1e-6;
+
+    printf("\nTempo medido: %.3f segundos.\n", tPassado);
 
     printf("\nArray apos a ordenacao: \n");
     imprimirArray(vetor);
