@@ -50,7 +50,7 @@ void imprimirArray(int vetor[]) {
 }
 
 int main() {
-    FILE *arquivo = fopen("C:\\Users\\POP\\Downloads\\NumerosAleatorios.txt", "r");
+    FILE *arquivo = fopen("NumerosAleatorios.txt", "r");
     if (arquivo == NULL)
     {
         printf("Erro ao abrir o arquivo");
