@@ -15,14 +15,15 @@ import java.util.List;
  *
  * @author ubuntu-user
  */
-public class ClienteDAO {
+public class ClienteDAO implements Idml {
     private Connection con; //Conexão com o banco.
     private PreparedStatement cmd; //Cmd para aplicar comandos SQL.
     private Cliente cli;
 
     public ClienteDAO(Cliente cli)throws SQLException{
-        this.cli = cli;
         this.con = Conexao.Conectar();
+        this.cli = cli;
+
         this.con.setAutoCommit(false); //Não realizar commit automático.
     }
 
@@ -93,6 +94,14 @@ public class ClienteDAO {
             con.rollback();
             return false;
         } finally { Conexao.Desconectar(con); }
+    }
+    
+    public ArrayList<Cliente> listar() {
+        return null;
+    }
+    
+    public ArrayList<Cliente> listar(boolean chave) {
+        return null;
     }
     
     
