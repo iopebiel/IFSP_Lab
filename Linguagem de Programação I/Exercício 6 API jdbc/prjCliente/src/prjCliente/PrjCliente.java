@@ -4,9 +4,9 @@
  */
 package prjCliente;
 
-import controller.ClienteC;
-import model.Cliente;
 import java.sql.SQLException;
+
+import view.frmCadastro;
 /**
  *
  * @author ubuntu-user
@@ -17,9 +17,9 @@ public class PrjCliente {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException {
-        System.out.println(new ClienteC(new Cliente("Sabrina Lopes", "Jardim Três Marias", 20)).inserir());
-        System.out.println(new ClienteC(new Cliente(1,"João", "Jardim Três Marias, Salto - SP", 25)).atualizar());
-        System.out.println(new ClienteC(new Cliente(3)).remover());
-         
+        
+        frmCadastro form = new frmCadastro();
+        form.setVisible(true);
+        
     }   
 }
